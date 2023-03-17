@@ -1,0 +1,6 @@
+.profile__item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+

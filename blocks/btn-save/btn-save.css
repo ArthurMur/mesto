@@ -1,0 +1,17 @@
+.btn-save {
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  min-height: 50px;
+  border-radius: 2px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  transition: all 0.3s easy;
+}
+
+.btn-save:hover {
+  opacity: 0.8;
+}

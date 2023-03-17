@@ -1,0 +1,29 @@
+.profile__author {
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+  margin: 0;
+}
+
+@media (max-width:767px) {
+  .profile__author {
+    font-size: 32px;
+  }
+}
+
+@media (max-width:617px) {
+  .profile__author {
+    max-width: 121px;
+  }
+}
+
+@media (max-width:525px) {
+  .profile__author {
+    max-width: 217px;
+    margin-left: 46px;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+  }
+}
