@@ -12,4 +12,4 @@
 * Реализовать функцию добавления карточек
 
 **Ссылка на gh-pages:**
-
+https://arthurmur.github.io/mesto/
