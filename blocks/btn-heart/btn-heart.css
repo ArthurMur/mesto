@@ -4,12 +4,12 @@
   background-size: 100%;
   cursor: pointer;
   margin-right: 30px;
-  width: 22px;
-  height: 19px;
+  min-width: 22px;
+  min-height: 19px;
   padding: 0;
   transition: opacity 0.3s ease;
 }
 
 .btn-heart:hover {
-  opacity: 0.6;
+  opacity: 0.5;
 }

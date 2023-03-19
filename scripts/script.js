@@ -1,42 +1,35 @@
 
-var container = document.querySelector(".container");
-var popup = container.querySelector(".popup");
-var overlay = container.querySelector(".overlay");
-var editButton = container.querySelector(".btn-edit");
-var closeButton = popup.querySelector(".popup-close");
-var saveButton = popup.querySelector(".btn-save");
-var heartButtons = container.querySelectorAll(".btn-heart");
-var authorInput = popup.querySelector('.popup-author');
-var descrInput = popup.querySelector('.popup-descr');
-var profileAuthor = container.querySelector('.profile__author');
-var profileDescr = container.querySelector('.profile__descr');
+let container = document.querySelector(".container");
+let popup = document.querySelector(".popup");
+let formElement = popup.querySelector(".popup-form");
+let editButton = container.querySelector(".btn-edit");
+let heartButtons = container.querySelectorAll(".btn-heart");
+let closeButton = popup.querySelector(".popup-close");
+let authorInput = document.getElementById("author");
+let descrInput = document.getElementById("descr");
+let profileAuthor = container.querySelector('.profile__author');
+let profileDescr = container.querySelector('.profile__descr');
 
 function openPopup() {
   popup.classList.add('popup_opened');
-  overlay.classList.add('overlay_dark');
   authorInput.value = profileAuthor.innerText;
   descrInput.value = profileDescr.innerText;
-  overlay.addEventListener("click", closePopup);
 }
 
 function closePopup() {
   popup.classList.remove('popup_opened');
-  overlay.classList.remove('overlay_dark');
-  overlay.removeEventListener("click", closePopup);
 }
 
 function addAuthor(event) {
   event.preventDefault();
-  let author = authorInput.value;
-  let descr = descrInput.value;
-  profileAuthor.innerText = author;
-  profileDescr.innerText = descr;
+  profileAuthor.innerText = authorInput.value;
+  profileDescr.innerText = descrInput.value;
   closePopup();
 }
 
 closeButton.addEventListener('click', closePopup);
 editButton.addEventListener('click', openPopup);
-saveButton.addEventListener('click', addAuthor);
+formElement.addEventListener('submit', addAuthor);
 
 heartButtons.forEach(button => {
   button.addEventListener('click', () => {

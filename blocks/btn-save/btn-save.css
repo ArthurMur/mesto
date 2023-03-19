@@ -9,9 +9,16 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+  width: 100%;
   transition: all 0.3s easy;
 }
 
 .btn-save:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 460px) {
+  .btn-save {
+    min-height: 46px;
+  }
 }

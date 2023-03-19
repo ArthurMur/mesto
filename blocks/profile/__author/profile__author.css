@@ -3,6 +3,16 @@
   font-size: 42px;
   line-height: 1.14;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 450px;
+}
+
+@media (max-width:880px) {
+  .profile__author {
+    max-width: calc(92vw - 150px - 120px - 38px - 30px - 18px );
+  }
 }
 
 @media (max-width:767px) {
@@ -11,17 +21,9 @@
   }
 }
 
-@media (max-width:617px) {
-  .profile__author {
-    max-width: 121px;
-  }
-}
-
 @media (max-width:525px) {
   .profile__author {
-    max-width: 217px;
-    margin-left: 46px;
-    font-weight: 500;
+    max-width: 400px;
     font-size: 27px;
     line-height: 33px;
     text-align: center;

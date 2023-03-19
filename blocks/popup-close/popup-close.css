@@ -3,8 +3,8 @@
   background: none;
   border: none;
   position: absolute;
-  top: -40px;
-  right: -40px;
+  top: -42px;
+  right: -42px;
   background-image: url('../../images/close-icon.svg');
   background-size: 100%;
   width: 32px;
@@ -29,7 +29,6 @@
 @media (max-width: 460px) {
   .popup-close {
     top: -36px;
-    right: 0;
     width: 20px;
     height: 20px;
   }

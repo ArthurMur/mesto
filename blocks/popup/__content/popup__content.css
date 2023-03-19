@@ -1,6 +1,18 @@
 .popup__content {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: space-between;
+  margin: 195px auto;
+  padding: 34px 36px 37px 36px;
+  max-width: 358px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+@media (max-width: 460px) {
+  .popup__content {
+    padding: 25px 22px 25px 22px;
+  }
 }
 

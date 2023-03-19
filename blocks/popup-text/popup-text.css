@@ -1,7 +1,8 @@
-.popup-author{
+.popup-text{
   border: none;
+  box-sizing: border-box;
   color: #000;
-  border-bottom: solid 1px #CCCCCC;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.2);
   min-height: 27px;
   width: 100%;
   margin-bottom: 30px;
