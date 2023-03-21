@@ -13,3 +13,9 @@
 .btn-heart:hover {
   opacity: 0.5;
 }
+
+@media (max-width: 460px) {
+  .btn-heart {
+    margin-right: 20px;
+  }
+}

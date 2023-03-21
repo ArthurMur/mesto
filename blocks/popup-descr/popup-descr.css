@@ -1,9 +1,0 @@
-.popup-descr {
-  margin-bottom: 48px;
-}
- 
-@media (max-width: 460px) {
-  .popup-descr {
-    margin-bottom: 45px;
-  }
-}
