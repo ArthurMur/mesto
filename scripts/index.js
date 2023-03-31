@@ -14,7 +14,6 @@ const descrInput = document.getElementById("descr");
 const profileAuthor = container.querySelector('.profile__author');
 const profileDescr = container.querySelector('.profile__descr');
 const elements = container.querySelector('.elements');
-const elementsItem = document.querySelector('.elements__item');
 
 function openPopup() {
   popup.classList.add('popup_opened');
@@ -78,6 +77,7 @@ const createCardElement = (cardData) => {
 
 const cardImagePopup = (cardData) => {
   popupImage.querySelector('.popup-image-img').src = cardData.link;
+  popupImage.querySelector('.popup-image-img').alt = cardData.name;
   popupImage.querySelector('.popup-image-text').textContent = cardData.name;
 
   popupImage.classList.add('popup_opened');
