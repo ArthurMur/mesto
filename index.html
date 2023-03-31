@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
   <link rel="stylesheet" href="./pages/index.css">
+  <script src="./scripts/index.js" defer type="module"></script>
 </head>
 <body class="body">
   <header class="header">
@@ -25,48 +26,7 @@
         <button type="button" class="btn-add"><img src="./images/plus.svg" class="btn-add-img" alt="изображение кнопки добавления картчоки"></button>
       </section>
       <section class="elements" aria-label="секция карточек">
-        <div class="elements__item">
-          <img src="./images/karachaevsk.jpg" class="elements__img" alt="изображение Карачаевска">
-          <div class="elements-descr">
-            <h2 class="elements__text">Карачаевск</h2>
-            <button type="button" class="btn-heart" name="like"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/elbrus.jpg" class="elements__img" alt="изображение горы Эльбрус">
-          <div class="elements-descr">
-            <h2 class="elements__text">Гора Эльбрус</h2>
-            <button type="button" class="btn-heart" name="like"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/dombai.jpg" class="elements__img" alt="изображение Домбая">
-          <div class="elements-descr">
-            <h2 class="elements__text">Домбай</h2>
-            <button type="button" class="btn-heart" name="like"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/karachaevsk.jpg" class="elements__img" alt="изображение Карачаевска">
-          <div class="elements-descr">
-            <h2 class="elements__text">Карачаевск</h2>
-            <button type="button" class="btn-heart" name="like"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/elbrus.jpg" class="elements__img" alt="изображение горы Эльбрус">
-          <div class="elements-descr">
-            <h2 class="elements__text">Гора Эльбрус</h2>
-            <button type="button" class="btn-heart" name="like"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/dombai.jpg" class="elements__img" alt="изображение Домбая">
-          <div class="elements-descr">
-            <h2 class="elements__text">Домбай</h2>
-            <button type="button" class="btn-heart" name="like"></button>
-          </div>
-        </div>
+        
       </section>
     </main>
     <footer class="footer">
@@ -84,6 +44,33 @@
       </form>
     </div>
   </div>
-<script src="./scripts/script.js"></script>
+  <div class="popup popup-card">
+    <div class="popup__content">
+      <button type="button" class="popup-close" name="close"></button>
+      <form class="popup-card-form" name="formSubmit" method="post">
+        <h2 class="popup-title">Новое место</h2>
+        <input type="text" id="card-name" name="card-name" class="popup-text" placeholder="Название">
+        <input type="text" id="card-source" name="card-source" class="popup-text popup-descr" placeholder="Ссылка на картинку">
+        <button type="submit" class="btn-save" name="subject">Cохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup-image">
+    <div class="popup-image__content">
+        <button type="button" class="popup-close" name="close"></button>
+        <img src="" alt="" class="popup-image-img">
+        <p class="popup-image-text"></p>
+    </div>
+  </div>
+  <template id="elements__item">
+    <div class="elements__item">
+      <button class="btn-delete"></button>
+      <img src="" class="elements__img" alt="">
+      <div class="elements-descr">
+        <h2 class="elements__text"></h2>
+        <button type="button" class="btn-heart" name="like"></button>
+      </div>
+    </div>
+  </template>
 </body>
 </html>
