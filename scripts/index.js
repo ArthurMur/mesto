@@ -1,48 +1,48 @@
 import { cards } from "./cards.js";
 
 const container = document.querySelector(".container");
-const popup = document.querySelector(".popup");
+const popupAuthor = document.querySelector(".popup-author");
 const popupCard = document.querySelector(".popup-card");
 const popupImage = document.querySelector(".popup-image");
-const formElement = popup.querySelector(".popup-form");
+const formElementAuthor = popupAuthor.querySelector(".popup-form");
 const formElementCard = popupCard.querySelector(".popup-card-form");
 const editButton = container.querySelector(".btn-edit");
 const addButton = container.querySelector(".btn-add");
-const closeButton = document.querySelectorAll(".popup-close");
+const closeButtons = document.querySelectorAll(".popup-close");
 const authorInput = document.getElementById("author");
 const descrInput = document.getElementById("descr");
 const profileAuthor = container.querySelector('.profile__author');
 const profileDescr = container.querySelector('.profile__descr');
-const elements = container.querySelector('.elements');
+const cardsContainer = container.querySelector('.elements');
+const elementsTemplete = document.querySelector('#elements__item').content;
+const popupImageImg = popupImage.querySelector('.popup-image-img');
+const popupImageText = popupImage.querySelector('.popup-image-text');
+const cardNameInput = document.getElementById("card-name");
+const cardSourceInput = document.getElementById("card-source");
 
-function openPopup() {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
-  
-  authorInput.value = profileAuthor.innerText;
-  descrInput.value = profileDescr.innerText;
 }
 
-function openPopupCard() {
-  popupCard.classList.add('popup_opened');
-}
-
-function closePopup() {
-  popup.classList.remove('popup_opened');
-  popupCard.classList.remove('popup_opened');
-  popupImage.classList.remove('popup_opened');
+function closePopup(...popups) {
+  popups.forEach(popup => {
+    if (popup) {
+      popup.classList.remove('popup_opened');
+    }
+  });
 }
 
 function addAuthor(event) {
   event.preventDefault();
 
-  profileAuthor.innerText = authorInput.value;
-  profileDescr.innerText = descrInput.value;
+  profileAuthor.textContent = authorInput.value;
+  profileDescr.textContent = descrInput.value;
 
-  closePopup();
+  closePopup(popupAuthor);
 }
 
 const createCardElement = (cardData) => {
-  const elementsTemplete = document.querySelector('#elements__item').content;
+
   const elementsElement = elementsTemplete.querySelector('.elements__item').cloneNode(true);
   
   const img = elementsElement.querySelector('.elements__img');
@@ -72,19 +72,23 @@ const createCardElement = (cardData) => {
   deleteButton.addEventListener("click", handleDelete);
   heartButton.addEventListener("click", handleLike);
 
+  cardNameInput.value = '';
+  cardSourceInput.value = '';
+
   return elementsElement;
 }
 
 const cardImagePopup = (cardData) => {
-  popupImage.querySelector('.popup-image-img').src = cardData.link;
-  popupImage.querySelector('.popup-image-img').alt = cardData.name;
-  popupImage.querySelector('.popup-image-text').textContent = cardData.name;
+  popupImageImg.src = cardData.link;
+  popupImageImg.alt = cardData.name;
+  popupImageText.textContent = cardData.name;
 
   popupImage.classList.add('popup_opened');
 }
 
 const renderCardElement = (elementsElement) => {
-  elements.prepend(elementsElement);
+  cardsContainer.prepend(elementsElement);
+  
 };
 
 cards.forEach((card) => {
@@ -95,9 +99,6 @@ cards.forEach((card) => {
 const cardSubmit = (event) => {
   event.preventDefault();
 
-  const cardNameInput = document.getElementById("card-name");
-  const cardSourceInput = document.getElementById("card-source");
-
   const name = cardNameInput.value;
   const link = cardSourceInput.value;
 
@@ -107,14 +108,13 @@ const cardSubmit = (event) => {
   };  
 
   renderCardElement(createCardElement(cardData));
-  closePopup();
+  closePopup(popupCard);
 };
 
 formElementCard.addEventListener("submit", cardSubmit); 
-
-closeButton.forEach((button) => button.addEventListener('click', closePopup));
-editButton.addEventListener('click', openPopup);
-addButton.addEventListener('click', openPopupCard);
-formElement.addEventListener('submit', addAuthor);
+closeButtons.forEach((button) => button.addEventListener('click', () => {closePopup(popupAuthor, popupCard, popupImage);}));
+editButton.addEventListener("click", () => {openPopup(popupAuthor);});
+addButton.addEventListener('click', () => {openPopup(popupCard);});
+formElementAuthor.addEventListener('submit', addAuthor);
 
 
