@@ -24,12 +24,8 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-function closePopup(...popups) {
-  popups.forEach(popup => {
-    if (popup) {
-      popup.classList.remove('popup_opened');
-    }
-  });
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
 
 function addAuthor(event) {
@@ -65,20 +61,17 @@ const createCardElement = (cardData) => {
   };
 
   const openCardImage = () => {
-    cardImagePopup(cardData);
+    openCardImagePopup(cardData);
   };
 
   cardImage.addEventListener('click', openCardImage);
   deleteButton.addEventListener("click", handleDelete);
   heartButton.addEventListener("click", handleLike);
 
-  cardNameInput.value = '';
-  cardSourceInput.value = '';
-
   return elementsElement;
 }
 
-const cardImagePopup = (cardData) => {
+const openCardImagePopup = (cardData) => {
   popupImageImg.src = cardData.link;
   popupImageImg.alt = cardData.name;
   popupImageText.textContent = cardData.name;
@@ -96,7 +89,7 @@ cards.forEach((card) => {
   renderCardElement(element);
 });
 
-const cardSubmit = (event) => {
+const submitCardElement = (event) => {
   event.preventDefault();
 
   const name = cardNameInput.value;
@@ -108,11 +101,18 @@ const cardSubmit = (event) => {
   };  
 
   renderCardElement(createCardElement(cardData));
+  
+  cardNameInput.value = '';
+  cardSourceInput.value = '';
+
   closePopup(popupCard);
 };
 
-formElementCard.addEventListener("submit", cardSubmit); 
-closeButtons.forEach((button) => button.addEventListener('click', () => {closePopup(popupAuthor, popupCard, popupImage);}));
+formElementCard.addEventListener("submit", submitCardElement); 
+closeButtons.forEach(button => {
+  const buttonsPopup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(buttonsPopup));
+});
 editButton.addEventListener("click", () => {openPopup(popupAuthor);});
 addButton.addEventListener('click', () => {openPopup(popupCard);});
 formElementAuthor.addEventListener('submit', addAuthor);
