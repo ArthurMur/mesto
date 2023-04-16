@@ -9,9 +9,10 @@ const formElementAuthor = popupAuthor.querySelector(".popup-form");
 const formElementCard = popupCard.querySelector(".popup-card-form");
 const editButton = container.querySelector(".btn-edit");
 const addButton = container.querySelector(".btn-add");
+const saveButtonCard = popupCard.querySelector(".btn-save");
 const closeButtons = document.querySelectorAll(".popup-close");
-const authorInput = document.getElementById("author");
-const descrInput = document.getElementById("descr");
+const authorInput = document.querySelector(".popup-text_author");
+const descrInput = document.querySelector(".popup-descr");
 const profileAuthor = container.querySelector('.profile__author');
 const profileDescr = container.querySelector('.profile__descr');
 const cardsContainer = container.querySelector('.elements');
@@ -23,10 +24,12 @@ const cardSourceInput = document.getElementById("card-source");
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 function addAuthor(event) {
@@ -77,7 +80,7 @@ const openCardImagePopup = (cardData) => {
   popupImageImg.alt = cardData.name;
   popupImageText.textContent = cardData.name;
 
-  popupImage.classList.add('popup_opened');
+  openPopup(popupImage);
 }
 
 const renderCardElement = (elementsElement) => {
@@ -102,10 +105,8 @@ const submitCardElement = (event) => {
   };  
 
   renderCardElement(createCardElement(cardData));
-  
-  cardNameInput.value = '';
-  cardSourceInput.value = '';
 
+  event.target.reset();
   closePopup(popupCard);
 };
 
@@ -115,14 +116,20 @@ closeButtons.forEach(button => {
   button.addEventListener('click', () => closePopup(buttonsPopup));
 });
 editButton.addEventListener("click", () => {openPopup(popupAuthor);});
-addButton.addEventListener('click', () => {openPopup(popupCard);});
+addButton.addEventListener('click', () => {
+  openPopup(popupCard);
+  saveButtonCard.classList.add('btn-save_inactive'); 
+});
 formElementAuthor.addEventListener('submit', addAuthor);
 
-document.addEventListener('keydown', function(event) {
-  if (event.key === "Escape") {
-    popups.forEach(popup => closePopup(popup)); 
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened') 
+    closePopup(openedPopup);
   }
-});
+}
+
+ 
 
 popups.forEach(popup => {
   popup.children[0].addEventListener('mouseover', () => {
