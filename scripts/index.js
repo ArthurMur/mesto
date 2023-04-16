@@ -1,6 +1,7 @@
 import { cards } from "./cards.js";
 
 const container = document.querySelector(".container");
+const popups = Array.from(document.querySelectorAll('.popup'));
 const popupAuthor = document.querySelector(".popup-author");
 const popupCard = document.querySelector(".popup-card");
 const popupImage = document.querySelector(".popup-image");
@@ -117,4 +118,25 @@ editButton.addEventListener("click", () => {openPopup(popupAuthor);});
 addButton.addEventListener('click', () => {openPopup(popupCard);});
 formElementAuthor.addEventListener('submit', addAuthor);
 
+document.addEventListener('keydown', function(event) {
+  if (event.key === "Escape") {
+    popups.forEach(popup => closePopup(popup)); 
+  }
+});
+
+popups.forEach(popup => {
+  popup.children[0].addEventListener('mouseover', () => {
+    popup.style.cursor = 'default';
+  });
+  
+  popup.children[0].addEventListener('mouseleave', () => {
+    popup.style.cursor = 'pointer';
+  });
+  
+  popup.addEventListener('click', event => {
+    if (event.target === popup) {
+      closePopup(popup);
+    }
+  });
+});
 
