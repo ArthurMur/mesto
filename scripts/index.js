@@ -34,10 +34,8 @@ function closePopup(popup) {
 
 function addAuthor(event) {
   event.preventDefault();
-
   profileAuthor.textContent = authorInput.value;
   profileDescr.textContent = descrInput.value;
-
   closePopup(popupAuthor);
 }
 
@@ -111,11 +109,18 @@ const submitCardElement = (event) => {
 };
 
 formElementCard.addEventListener("submit", submitCardElement); 
+
 closeButtons.forEach(button => {
   const buttonsPopup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(buttonsPopup));
 });
-editButton.addEventListener("click", () => {openPopup(popupAuthor);});
+
+editButton.addEventListener("click", () => {
+  authorInput.value = profileAuthor.textContent;
+  descrInput.value = profileDescr.textContent;
+  openPopup(popupAuthor);
+});
+
 addButton.addEventListener('click', () => {
   openPopup(popupCard);
   saveButtonCard.classList.add('btn-save_inactive'); 
@@ -128,8 +133,6 @@ function closeByEscape(evt) {
     closePopup(openedPopup);
   }
 }
-
- 
 
 popups.forEach(popup => {
   popup.children[0].addEventListener('mouseover', () => {
