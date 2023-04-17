@@ -123,7 +123,8 @@ editButton.addEventListener("click", () => {
 
 addButton.addEventListener('click', () => {
   openPopup(popupCard);
-  saveButtonCard.classList.add('btn-save_inactive'); 
+  saveButtonCard.classList.add('btn-save_inactive');
+  saveButtonCard.disabled = true;
 });
 formElementAuthor.addEventListener('submit', addAuthor);
 
