@@ -1,5 +1,3 @@
-import {cards} from './index.js';
-
 class Card {
   constructor(data, templateSelector, openCardImagePopup) {
     this._name = data.name;
