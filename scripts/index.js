@@ -1,6 +1,5 @@
-import {Card} from "./Cards.js";
-import {cards, formValidationConfig} from "./utils.js";
-import {FormValidator} from "./FormValidator.js";
+import {Card, cards} from "./Cards.js";
+import {FormValidator, formValidationConfig} from "./FormValidator.js";
 
 const container = document.querySelector(".container");
 const popups = Array.from(document.querySelectorAll('.popup'));
