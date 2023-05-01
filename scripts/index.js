@@ -1,4 +1,4 @@
-import {Card, cards} from "./Cards.js";
+import {Card} from "./Cards.js";
 import {FormValidator, formValidationConfig} from "./FormValidator.js";
 
 const container = document.querySelector(".container");
@@ -10,8 +10,8 @@ const formElementAuthor = popupAuthor.querySelector(".popup-form");
 const formElementCard = popupCard.querySelector(".popup-card-form");
 const editButton = container.querySelector(".btn-edit");
 const addButton = container.querySelector(".btn-add");
-const saveButtonCard = popupCard.querySelector(".btn-save");
-const closeButtons = document.querySelectorAll(".popup-close");
+const buttonSaveCard = popupCard.querySelector(".btn-save");
+const buttonsClose = document.querySelectorAll(".popup-close");
 const authorInput = document.querySelector(".popup-text_author");
 const descrInput = document.querySelector(".popup-descr");
 const profileAuthor = container.querySelector('.profile__author');
@@ -22,6 +22,33 @@ const popupImageImg = popupImage.querySelector('.popup-image-img');
 const popupImageText = popupImage.querySelector('.popup-image-text');
 const cardNameInput = document.getElementById("card-name");
 const cardSourceInput = document.getElementById("card-source");
+
+const cards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 /** Общая функция открытия Popup **/
 function openPopup(popup) {
@@ -84,6 +111,7 @@ const submitCardElement = (event) => {
 
   event.target.reset();
   closePopup(popupCard);
+  validationFormPlace.enableValidation();
 };
 
 /** Функция добавления новой карточки в начало блока **/
@@ -94,7 +122,7 @@ const renderCard = (card) => {
 formElementCard.addEventListener("submit", submitCardElement); 
 
 /** Слушатели на все кнопки для закрытия попапов **/
-closeButtons.forEach(button => {
+buttonsClose.forEach(button => {
   const buttonsPopup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(buttonsPopup));
 });
@@ -107,8 +135,6 @@ editButton.addEventListener("click", () => {
 
 addButton.addEventListener('click', () => {
   openPopup(popupCard);
-  saveButtonCard.classList.add('btn-save_inactive');
-  saveButtonCard.disabled = true;
 });
 
 formElementAuthor.addEventListener('submit', addAuthor);
@@ -137,3 +163,4 @@ validationFormProfile.enableValidation();
 const validationFormPlace = new FormValidator(formValidationConfig, formElementCard);
 validationFormPlace.enableValidation();
 
+export {cards}
