@@ -1,4 +1,6 @@
-import { cards } from "./cards.js";
+import {Card} from "./Cards.js";
+import {cards, formValidationConfig} from "./utils.js";
+import {FormValidator} from "./FormValidator.js";
 
 const container = document.querySelector(".container");
 const popups = Array.from(document.querySelectorAll('.popup'));
@@ -22,16 +24,27 @@ const popupImageText = popupImage.querySelector('.popup-image-text');
 const cardNameInput = document.getElementById("card-name");
 const cardSourceInput = document.getElementById("card-source");
 
+/** Общая функция открытия Popup **/
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
 }
 
+/** Общая функция закртытия Popup **/
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
 }
 
+/**Функция закрытия по клавише Esc **/
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened') 
+    closePopup(openedPopup);
+  }
+}
+
+/** Функция добавления автора и описания **/
 function addAuthor(event) {
   event.preventDefault();
   profileAuthor.textContent = authorInput.value;
@@ -39,77 +52,49 @@ function addAuthor(event) {
   closePopup(popupAuthor);
 }
 
+/** Функция создания карточки **/
 const createCardElement = (cardData) => {
+  const card = new Card(cardData, '#elements__item', openCardImagePopup);
 
-  const elementsElement = elementsTemplete.querySelector('.elements__item').cloneNode(true);
-  
-  const img = elementsElement.querySelector('.elements__img');
-  const text = elementsElement.querySelector('.elements__text');
-
-  img.src = cardData.link;
-  img.alt = cardData.name;
-  text.textContent = cardData.name;
-
-  const heartButton = elementsElement.querySelector(".btn-heart");
-  const deleteButton = elementsElement.querySelector(".btn-delete");
-  const cardImage = elementsElement.querySelector(".elements__img");
-
-  const handleDelete = () => {
-    elementsElement.remove();
-  };
-
-  const handleLike = () => {
-    heartButton.classList.toggle("btn-heart_active");
-  };
-
-  const openCardImage = () => {
-    openCardImagePopup(cardData);
-  };
-
-  cardImage.addEventListener('click', openCardImage);
-  deleteButton.addEventListener("click", handleDelete);
-  heartButton.addEventListener("click", handleLike);
-
-  return elementsElement;
+  return card.generateCard();
 }
 
-const openCardImagePopup = (cardData) => {
-  popupImageImg.src = cardData.link;
-  popupImageImg.alt = cardData.name;
-  popupImageText.textContent = cardData.name;
-
+/** Функция открытия просмотра изображения карточки **/
+const openCardImagePopup = (cardImage) => {
   openPopup(popupImage);
+
+  popupImageImg.src = cardImage.link;
+  popupImageImg.alt = cardImage.name;
+  popupImageText.textContent = cardImage.name;
 }
 
-const renderCardElement = (elementsElement) => {
-  cardsContainer.prepend(elementsElement);
-  
-};
-
-cards.forEach((card) => {
-  const element = createCardElement(card);
-  renderCardElement(element);
+/** Создание карточек из массива **/
+cards.forEach((cardData) => {
+  cardsContainer.prepend(createCardElement(cardData));
 });
 
 const submitCardElement = (event) => {
   event.preventDefault();
 
-  const name = cardNameInput.value;
-  const link = cardSourceInput.value;
-
   const cardData = {
-    name,
-    link,
-  };  
+    name: cardNameInput.value,
+    link: cardSourceInput.value,
+  }; 
 
-  renderCardElement(createCardElement(cardData));
+  renderCard(cardData);
 
   event.target.reset();
   closePopup(popupCard);
 };
 
+/** Функция добавления новой карточки в начало блока **/
+const renderCard = (card) => {
+  cardsContainer.prepend(createCardElement(card));
+};
+
 formElementCard.addEventListener("submit", submitCardElement); 
 
+/** Слушатели на все кнопки для закрытия попапов **/
 closeButtons.forEach(button => {
   const buttonsPopup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(buttonsPopup));
@@ -126,15 +111,10 @@ addButton.addEventListener('click', () => {
   saveButtonCard.classList.add('btn-save_inactive');
   saveButtonCard.disabled = true;
 });
+
 formElementAuthor.addEventListener('submit', addAuthor);
 
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened') 
-    closePopup(openedPopup);
-  }
-}
-
+/** Закрытие по клику на оверлей **/
 popups.forEach(popup => {
   popup.children[0].addEventListener('mouseover', () => {
     popup.style.cursor = 'default';
@@ -150,4 +130,11 @@ popups.forEach(popup => {
     }
   });
 });
+
+/** Валидация форм **/
+const validationFormProfile = new FormValidator(formValidationConfig, formElementAuthor);
+validationFormProfile.enableValidation();
+
+const validationFormPlace = new FormValidator(formValidationConfig, formElementCard);
+validationFormPlace.enableValidation();
 
