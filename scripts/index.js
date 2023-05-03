@@ -110,8 +110,8 @@ const submitCardElement = (event) => {
   renderCard(cardData);
 
   event.target.reset();
+  validationFormPlace.clearValidationForm();
   closePopup(popupCard);
-  validationFormPlace.enableValidation();
 };
 
 /** Функция добавления новой карточки в начало блока **/
