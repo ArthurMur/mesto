@@ -5,17 +5,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
-  <script src="./scripts/index.js" defer type="module"></script>
+  <link rel="stylesheet" href="./src/pages/index.css">
+  <script src="./src/pages/index.js" defer type="module"></script>
 </head>
 <body class="body">
   <header class="header">
-    <img class="header__logo" src="./images/logo-white.svg" alt="логотип место">
+    <img class="header__logo" src="./src/images/logo-white.svg" alt="логотип место">
   </header>
   <div class="container">
     <main class="main">
       <section class="profile" aria-label="секция профиля">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар">
+        <img class="profile__avatar" src="./src/images/avatar.jpg" alt="аватар">
         <div class="profile__info">
           <div class="profile__item">
             <h1 class="profile__author">Жак-Ив Кусто</h1>
@@ -23,7 +23,7 @@
           </div>
           <h2 class="profile__descr">Исследователь океана</h2>
         </div>
-        <button type="button" class="btn-add"><img src="./images/plus.svg" class="btn-add-img" alt="изображение кнопки добавления картчоки"></button>
+        <button type="button" class="btn-add"><img src="./src/images/plus.svg" class="btn-add-img" alt="изображение кнопки добавления картчоки"></button>
       </section>
       <section class="elements" aria-label="секция карточек">
         
@@ -59,11 +59,11 @@
       <form class="popup-card-form popup-form" name="formSubmit" method="post">
         <h2 class="popup-title">Новое место</h2>
         <label class="form-field">
-          <input type="text" id="card-name" name="card-name" class="popup-text" placeholder="Название" required minlength="2" maxlength="30">
+          <input type="text" id="card-name" name="cardname" class="popup-text" placeholder="Название" required minlength="2" maxlength="30">
           <span class="popup-form__input-error card-name-input-error"></span>
         </label>
         <label class="form-field">
-          <input type="url" id="card-source" name="card-source" class="popup-text popup-descr" placeholder="Ссылка на картинку" required>
+          <input type="url" id="card-source" name="cardsource" class="popup-text popup-descr" placeholder="Ссылка на картинку" required>
           <span class="popup-form__input-error card-source-input-error"></span>
         </label>
         <button type="submit" class="btn-save" name="subject">Cоздать</button>
