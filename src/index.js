@@ -1,22 +1,16 @@
-import {Card} from "../components/cards.js";
-import {FormValidator, formValidationConfig} from "../components/FormValidator.js";
-import {Section} from "../components/Section.js";
-import {cards} from "../components/utils/constants.js";
+import './index.css';
+import {Card} from "./components/cards.js";
+import {FormValidator, formValidationConfig} from "./components/FormValidator.js";
+import {Section} from "./components/Section.js";
+import {cards} from "./components/utils/constants.js";
 import {
-  container, popups,
-  popupAuthor, popupCard, popupImage,
   formElementAuthor, formElementCard,
   editButton, addButton,
-  buttonSaveCard, buttonsClose,
   authorInput, descrInput,
-  profileAuthor, profileDescr,
-  cardsContainer, elementsTemplete,
-  popupImageImg, popupImageText,
-  cardNameInput, cardSourceInput
-} from "../components/utils/constants.js";
-import {PopupWithImage} from "../components/PopupWithImage.js";
-import {PopupWithForm} from "../components/PopupWithForm.js";
-import {UserInfo} from "../components/UserInfo.js";
+} from "./components/utils/constants.js";
+import {PopupWithImage} from "./components/PopupWithImage.js";
+import {PopupWithForm} from "./components/PopupWithForm.js";
+import {UserInfo} from "./components/UserInfo.js";
 
 // Объявление popup всплывающей картинки
 const popupImageZoom = new PopupWithImage('.popup-image');
@@ -66,8 +60,8 @@ popupAddCard.setEventListeners();
 const popupEditeProfile = new PopupWithForm('.popup-author', {
   callbackFormSubmit: (profileData) => {
     userInfo.setUserInfo({
-      username: profileData.username,
-      description: profileData.description
+      username: profileData['popup-author'],
+      description: profileData['popup-descr']
     });
     popupEditeProfile.close();
   }

@@ -5,17 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="./src/pages/index.css">
-  <script src="./src/pages/index.js" defer type="module"></script>
 </head>
 <body class="body">
   <header class="header">
-    <img class="header__logo" src="./src/images/logo-white.svg" alt="логотип место">
+    <img class="header__logo" src="<%=require('./images/logo-white.svg')%>" alt="логотип место">
   </header>
   <div class="container">
     <main class="main">
       <section class="profile" aria-label="секция профиля">
-        <img class="profile__avatar" src="./src/images/avatar.jpg" alt="аватар">
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватар">
         <div class="profile__info">
           <div class="profile__item">
             <h1 class="profile__author">Жак-Ив Кусто</h1>
@@ -23,7 +21,7 @@
           </div>
           <h2 class="profile__descr">Исследователь океана</h2>
         </div>
-        <button type="button" class="btn-add"><img src="./src/images/plus.svg" class="btn-add-img" alt="изображение кнопки добавления картчоки"></button>
+        <button type="button" class="btn-add"><img src="<%=require('./images/plus.svg')%>" class="btn-add-img" alt="изображение кнопки добавления картчоки"></button>
       </section>
       <section class="elements" aria-label="секция карточек">
         
