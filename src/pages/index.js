@@ -1,16 +1,16 @@
 import './index.css';
-import {Card} from "./components/cards.js";
-import {FormValidator, formValidationConfig} from "./components/FormValidator.js";
-import {Section} from "./components/Section.js";
-import {cards} from "./components/utils/constants.js";
+import {Card} from "../components/Card.js";
+import {FormValidator, formValidationConfig} from "../components/FormValidator.js";
+import {Section} from "../components/Section.js";
 import {
   formElementAuthor, formElementCard,
   editButton, addButton,
   authorInput, descrInput,
-} from "./components/utils/constants.js";
-import {PopupWithImage} from "./components/PopupWithImage.js";
-import {PopupWithForm} from "./components/PopupWithForm.js";
-import {UserInfo} from "./components/UserInfo.js";
+  cards
+} from "../utils/constants.js";
+import {PopupWithImage} from "../components/PopupWithImage.js";
+import {PopupWithForm} from "../components/PopupWithForm.js";
+import {UserInfo} from "../components/UserInfo.js";
 
 // Объявление popup всплывающей картинки
 const popupImageZoom = new PopupWithImage('.popup-image');
