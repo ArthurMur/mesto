@@ -7,11 +7,11 @@ export class PopupWithImage extends Popup {
     this._popupImage = this._popupItem.querySelector('.popup-image-img');
   }
 
-  open(cardData){
+  open(description, image){
     // Вставляем в popup картинку с ссылкой изображения и описанием
-    this._popupDescription.textContent = cardData.name;
-    this._popupImage.src = cardData.link;
-    this._popupImage.alt = cardData.name;
+    this._popupDescription.textContent = description;
+    this._popupImage.src = image;
+    this._popupImage.alt = description;
     super.open();
   }
 }

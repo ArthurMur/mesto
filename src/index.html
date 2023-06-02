@@ -13,6 +13,7 @@
   <div class="container">
     <main class="main">
       <section class="profile" aria-label="секция профиля">
+        <button class="profile__avatar-edit"></button>
         <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватар">
         <div class="profile__info">
           <div class="profile__item">
@@ -38,17 +39,39 @@
         <form class="popup-author-form popup-form" name="formSubmit" method="post">
           <h2 class="popup-title">Редактировать профиль</h2>
           <label class="form-field">
-            <input type="text" id="author" name="popup-author" class="popup-text popup-text_author" placeholder="Имя" value="Жак-Ив Кусто" required minlength="2" maxlength="40">
+            <input type="text" id="author" name="username" class="popup-text popup-text_author" placeholder="Имя" value="Жак-Ив Кусто" required minlength="2" maxlength="40">
             <span class="popup-form__input-error author-input-error"></span>
           </label>
           <label class="form-field">
-            <input type="text" id="descr" name="popup-descr" class="popup-text popup-descr" placeholder="Описание" value="Исследователь океана" required minlength="2" maxlength="200">
+            <input type="text" id="descr" name="description" class="popup-text popup-descr" placeholder="Описание" value="Исследователь океана" required minlength="2" maxlength="200">
             <span class="popup-form__input-error descr-input-error"></span>
           </label>
-          
           <button type="submit" class="btn-save" name="subject">Cохранить</button>
         </form>
       </div>
+  </div>
+
+  <div class="popup popup-avatar">
+    <div class="popup__content">
+      <button type="button" class="popup-close" name="close"></button>
+      <form class="popup-avatar-form popup-form" name="formSubmit" method="post">
+        <label class="form-field">
+          <input type="text" id="avatar" name="avatar" class="popup-text popup-text_avatar" placeholder="Введите ссылку на аватар" required minlength="2" maxlength="200">
+          <span class="popup-form__input-error avatar-input-error"></span>
+        </label>
+        <button type="submit" class="btn-save" name="subject">Cохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup-delete">
+    <div class="popup__content popup__content-delete">
+      <button type="button" class="popup-close" name="close"></button>
+      <h2 class="popup-title popup-title_delete">Вы уверены?</h2>
+      <form class="popup-form" name="formDelete" novalidate>
+        <button type="submit" class="btn-save" name="subject">Да</button>
+      </form>
+    </div>
   </div>
 
   <div class="popup popup-card">
@@ -84,6 +107,7 @@
       <div class="elements-descr">
         <h2 class="elements__text"></h2>
         <button type="button" class="btn-heart" name="like"></button>
+        <p class="btn-heart-counter"></p>
       </div>
     </div>
   </template>

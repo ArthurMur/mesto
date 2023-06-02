@@ -8,6 +8,8 @@ export class PopupWithForm extends Popup {
     // this._popupItem находится в родительском классе Popup
     this._popupFormItem = this._popupItem.querySelector('.popup-form');
     this._inputList = Array.from(this._popupFormItem.querySelectorAll('.popup-text'));
+    this._sendButton = this._popupItem.querySelector('.btn-save');
+    this._sendButtonText = this._sendButton.textContent;
   }
 
   _getInputValues() {
@@ -24,6 +26,16 @@ export class PopupWithForm extends Popup {
       evt.preventDefault();
       this._callbackFormSubmit(this._getInputValues());
     });
+  }
+
+  // Добавление кнопке текста сохранения
+  putSavingText() {
+    this._sendButton.textContent = 'Сохранение...';
+  }
+
+  // Добавление дефолтного текста кнопке
+  returnSavingText() {
+    this._sendButton.textContent = this._sendButtonText;
   }
 
   close() {
