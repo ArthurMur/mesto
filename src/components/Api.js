@@ -4,7 +4,7 @@ export class Api {
     this._headers = headers;
   }
   //Метод отбраоботки сервера 
-  _serverResponse(res){
+  _checkResponse(res){
     if (res.ok) {
       return res.json();
     } else {
@@ -16,7 +16,7 @@ export class Api {
     return fetch(`${this._link}cards`, {
     headers: this._headers
     })
-    .then(res => { return this._serverResponse(res)});
+    .then(res => { return this._checkResponse(res)});
   }
 
   // Получение информации карточек и информации от пользователя
@@ -31,7 +31,7 @@ export class Api {
       method: 'POST',
       body: JSON.stringify({ name, link })
     })
-      .then(res => { return this._serverResponse(res); })
+      .then(res => { return this._checkResponse(res); })
   }
   
   // Удаления карточки с сервака
@@ -40,7 +40,7 @@ export class Api {
       headers: this._headers,
       method: 'DELETE',
     })
-      .then(res => { return this._serverResponse(res); })
+      .then(res => { return this._checkResponse(res); })
   }
 
   // Получение данных пользователя с сервака
@@ -48,7 +48,7 @@ export class Api {
   return fetch(`${this._link}users/me`, {
     headers: this._headers
   })
-    .then(res => { return this._serverResponse(res); })
+    .then(res => { return this._checkResponse(res); })
   }
 
   // Отправка данных пользователя на сервак
@@ -58,7 +58,7 @@ export class Api {
       method: 'PATCH',
       body: JSON.stringify({ name: profileData.username, about: profileData.description })
     })
-      .then(res => { return this._serverResponse(res); })
+      .then(res => { return this._checkResponse(res); })
   }
 
   // Отправка данных о новом аватаре на сервак
@@ -68,7 +68,7 @@ export class Api {
       method: 'PATCH',
       body: JSON.stringify({ avatar: avatarLink.avatar })
     })
-      .then(res => { return this._serverResponse(res); })
+      .then(res => { return this._checkResponse(res); })
   }
 
   // Отправка лайка на сервак
@@ -77,7 +77,7 @@ export class Api {
       headers: this._headers,
       method: 'PUT',
     })
-      .then(res => { return this._serverResponse(res); })
+      .then(res => { return this._checkResponse(res); })
   }
 
   // Удаление лайка с сервака
@@ -86,6 +86,6 @@ export class Api {
       headers: this._headers,
       method: 'DELETE',
     })
-      .then(res => { return this._serverResponse(res); })
+      .then(res => { return this._checkResponse(res); })
   }
 }

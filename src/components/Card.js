@@ -54,7 +54,7 @@ class Card {
       // Отображение количества лайков из ответа сервера
       this.likeSelector.textContent = this._likeArea.length;
     }
-    if (this._likedCard()) {
+    if (this._isLiked()) {
       this._cardElementLike.classList.add('btn-heart_active');
     } else {
       this._cardElementLike.classList.remove('btn-heart_active');
@@ -62,13 +62,13 @@ class Card {
   }
 
   // Проверка присутствия лайка на карточке
-  _likedCard() {
+  _isLiked() {
     return this._likeArea.find(userLike => userLike._id === this._userId);
   }
 
   // Обработка добавления и снятия лайков
   _interactLike() {
-    if (this._likedCard()) {
+    if (this._isLiked()) {
       this._deleteLike(this._cardId);
     } else {
       this._putLike(this._cardId);
@@ -76,7 +76,7 @@ class Card {
   }
 
   /** Функция удаления карточки **/
-  _handleDelete() {
+  handleDelete() {
     this._element.remove();
     this._element = null;
   }

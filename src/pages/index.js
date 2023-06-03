@@ -122,7 +122,7 @@ popupEditeAvatar.setEventListeners();
 const popupConfirmationDelete = new PopupWithConfirmation(".popup-delete", {
   callbackConfirmation: (cardElement, cardId) => { api.deleteCard(cardId)
       .then(() => {
-        cardElement._handleDelete();
+        cardElement.handleDelete();
         popupConfirmationDelete.close();
       })
       .catch((err) => { console.log(`При удалении карточки возникла ошибка, ${err}`) })
