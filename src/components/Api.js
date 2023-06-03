@@ -16,7 +16,7 @@ export class Api {
     return fetch(`${this._link}cards`, {
     headers: this._headers
     })
-    .then(res => this._serverResponse(res));
+    .then(res => { return this._serverResponse(res)});
   }
 
   // Получение информации карточек и информации от пользователя

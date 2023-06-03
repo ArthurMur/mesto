@@ -21,15 +21,6 @@ const api = new Api(apiFindings);
 // Переменная для хранения ID пользователя
 let userId;
 
-// Объявление popup всплывающей картинки
-const popupImageZoom = new PopupWithImage('.popup-image');
-popupImageZoom.setEventListeners();
-
-// // Функция всплытия картинки
-// const handleCardClick = function (cardData) {
-//   popupImageZoom.open(cardData);
-// }
-
 // Получение данных пользователя
 const userInfo = new UserInfo({
   usernameSelector: '.profile__author',
@@ -43,8 +34,7 @@ const createCardElement = (cardData) => {
     // Просмотр картинки
     handleCardClick: (name, image) => { popupImageZoom.open(name, image) },
     // Удаление карточки
-    handleDelete: (cardElement, cardId) => { popupConfirmationDelete.open(cardElement, cardId) },                  // <---------- не забудь создать переменную popupNoticeDelete попапа подтверждения удаления карточки
-     // Добавление лайка
+    handleDelete: (cardElement, cardId) => { popupConfirmationDelete.open(cardElement, cardId) },                  
     handleLike: (cardId) => { api.putLike(cardId)
       .then((res) => {
         card.renderLike(res);
@@ -72,9 +62,13 @@ const makeCards = new Section({
 api.getAppInfo().then(([cardData, userProfileData]) => {
   userId = userProfileData._id;
   userInfo.setUserInfo({ username: userProfileData.name, description: userProfileData.about });
-  makeCards.renderItems(cardData);     
+  makeCards.renderItems(cardData.reverse());     
   userInfo.setUserAvatar(userProfileData.avatar);
-}).catch((err) => { console.log(`Возникла ошибка, ${err}`) })
+}).catch((err) => { console.log(`Возникла ошибка, ${err}`) });
+
+// Объявление popup всплывающей картинки
+const popupImageZoom = new PopupWithImage('.popup-image');
+popupImageZoom.setEventListeners();
 
 // Объявление popup добавления новой карточки
 const popupAddCard = new PopupWithForm('.popup-card', {
@@ -128,7 +122,7 @@ popupEditeAvatar.setEventListeners();
 const popupConfirmationDelete = new PopupWithConfirmation(".popup-delete", {
   callbackConfirmation: (cardElement, cardId) => { api.deleteCard(cardId)
       .then(() => {
-        cardElement.deleteCard();
+        cardElement._handleDelete();
         popupConfirmationDelete.close();
       })
       .catch((err) => { console.log(`При удалении карточки возникла ошибка, ${err}`) })

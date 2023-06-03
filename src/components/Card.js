@@ -4,7 +4,6 @@ class Card {
     this._name = this._card.name;
     this._link = this._card.link;
     this._templateSelector = templateSelector;
-    this._handleCardClick =  handleCardClick;
 
     this._userId = userId;
     this._cardId = authorData.cardId;
@@ -85,7 +84,6 @@ class Card {
   /**Слушатели событий **/
   _setEventListeners() {
     this._cardElementLike.addEventListener('click', () => this._interactLike());
-    this._cardElementDel.addEventListener('click', this._handleDelete.bind(this));
     this._cardElementPhoto.addEventListener('click', () => this._cardClick(this._name, this._link));
 
     if (this._userId === this._authorId) {

@@ -17,6 +17,7 @@
 @import url('../blocks/btn-add-img/btn-add-img.css');
 @import url('../blocks/btn-heart/btn-heart.css');
 @import url('../blocks/btn-heart/_active/btn-heart_active.css');
+@import url('../blocks/btn-heart-counter/btn-heart-counter.css');
 @import url('../blocks/btn-save/btn-save.css');
 @import url('../blocks/elements/elements.css');
 @import url('../blocks/elements/__item/elements__item.css');
@@ -41,6 +42,7 @@
 @import url('../blocks/popup-image-text/popup-image-text.css');
 @import url('../blocks/popup-author/popup-author.css');
 @import url('../blocks/popup-author-form/popup-author-form.css');
+@import url('../blocks/popup-avatar-form/popup-avatar-form.css');
 @import url('../blocks/popup-form/__input/_active/popup-form__input-error_active.css');
 @import url('../blocks/popup-form/__input/_type/_error/popup-form__input_type_error.css');
 @import url('../blocks/popup-delete/popup-delete.css');
@@ -50,3 +52,4 @@
 @import url('../blocks/author-input-error/author-input-error.css');
 @import url('../blocks/form-field/form-field.css');
 @import url('../blocks/btn-save/_inactive/btn-save_inactive.css');
+@import url('../blocks/element-like_info/elements-like_info.css');

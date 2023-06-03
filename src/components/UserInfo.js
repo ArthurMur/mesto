@@ -6,7 +6,7 @@ export class UserInfo {
     this._avatarLink = document.querySelector(userAvatarSelector);
   }
 
-  //Отдаем объект с данными
+  // Отдаем объект с данными
   getUserInfo() {
     return {
       username: this._username.textContent,
